@@ -11,6 +11,8 @@ const typeDefs = `
 
   type Mutation {
     createUser(data: CreateUserInput!): PublicUser!
+    verifyRegister(data: verifyRegisterInput!): PublicUser!
+    loginUser(data: loginUserInput!): CurrentUserType!
     createAchievement(data: CreateAchievementInput!): PublicAchievement!
   }
 `;

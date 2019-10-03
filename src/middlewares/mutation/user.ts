@@ -1,7 +1,8 @@
 import { Middleware } from '../middleware.interface';
 import { UserCreateInput } from '@generated';
-import { validate, GqlError } from '@utils';
+import { validate, GqlError, userSelectorMethod } from '@utils';
 import { isEmpty, isLength, isEmail } from 'validator';
+import { compareSync } from 'bcryptjs';
 
 const createUser: Middleware<UserCreateInput> = async (
   resolver,
@@ -80,4 +81,57 @@ const createUser: Middleware<UserCreateInput> = async (
   throw GqlError(errors);
 };
 
-export default { createUser };
+const verifyRegister: Middleware<UserCreateInput> = async (
+  resolver,
+  _,
+  { data },
+  { req, exists },
+  info
+) => {
+  const { username, register_code } = data;
+  const args: any = userSelectorMethod(username);
+  const { valid, errors } = validate({
+    field: 'register_code',
+    msg: 'Invalid Register Code or Username.',
+    valid: await exists.User({
+      ...args,
+      register_code
+    })
+  });
+  if (valid) {
+    (<any>req).user = args;
+    return resolver();
+  }
+  return GqlError(errors);
+};
+
+const loginUser: Middleware<UserCreateInput> = async (
+  resolver,
+  _,
+  { data },
+  { req, query },
+  info
+) => {
+  const { username, password } = data;
+  const args = userSelectorMethod(username);
+  const user = await query.user({ where: args }, '{ id password }');
+  const { valid, errors } = validate(
+    {
+      field: 'username',
+      msg: 'Invalid Username.',
+      valid: !!user
+    },
+    {
+      field: 'password',
+      msg: 'Invalid Password.',
+      valid: compareSync(password, (user || { password: '' }).password)
+    }
+  );
+  if (valid) {
+    (<any>req).user = user;
+    return resolver();
+  }
+  throw GqlError(errors);
+};
+
+export default { loginUser, createUser, verifyRegister };

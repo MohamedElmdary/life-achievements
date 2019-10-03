@@ -7,7 +7,7 @@ const publicAchievementFields = `
     completed: Boolean!
     published: Boolean!
     picture: String!
-    created_at: DateTime! @createdAt
+    created_at: String!
 `;
 
 const CreateAchievementInput = `
