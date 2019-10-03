@@ -1,0 +1,9 @@
+# import * from './publicAchievement.graphql';
+
+input CreateAchievementInput {
+  title: String!
+  description: String!
+  days: Int!
+  type: Type!
+  published: Boolean!
+}

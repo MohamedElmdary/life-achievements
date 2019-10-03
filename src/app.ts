@@ -5,6 +5,7 @@ import { GraphQLServer } from 'graphql-yoga';
 import { typeDefs } from '@graphql';
 import { middlewares } from '@middlewares';
 import { resolvers } from '@resolvers';
+
 // import { Query } from '@generated';
 
 //@ts-ignore

@@ -1,20 +1,13 @@
-import User from './user';
-import Achievement from './achievement';
+import { importSchema } from 'graphql-import';
+const { transpileSchema } = require('graphql-s2s').graphqls2s;
 
-const typeDefs = `
-  ${User}
-  ${Achievement}
+/**
+ *  @Note
+ *  some temp solution is to replace implements with inherits
+ */
 
-  type Query {
-    hello: String!
-  }
-
-  type Mutation {
-    createUser(data: CreateUserInput!): PublicUser!
-    verifyRegister(data: verifyRegisterInput!): PublicUser!
-    loginUser(data: loginUserInput!): CurrentUserType!
-    createAchievement(data: CreateAchievementInput!): PublicAchievement!
-  }
-`;
+const typeDefs = transpileSchema(
+  importSchema('src/graphql/schema.graphql').replace(/implements/g, 'inherits')
+);
 
 export { typeDefs };

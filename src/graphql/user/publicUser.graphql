@@ -1,0 +1,15 @@
+enum Gender {
+  MALE
+  FEMALE
+}
+
+type PublicUser {
+  id: ID!
+  first_name: String!
+  last_name: String!
+  username: String!
+  rate: Int!
+  gender: Gender!
+  picture: String!
+  created_at: String!
+}

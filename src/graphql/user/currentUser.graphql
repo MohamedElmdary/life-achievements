@@ -1,0 +1,8 @@
+type CurrentUserType implements PublicUser {
+  phone: String!
+  email: String!
+  token: String
+  refresh_token: String
+  friends: [PublicUser!]!
+  updated_at: String!
+}
