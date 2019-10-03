@@ -1,0 +1,10 @@
+type Replay {
+  id: ID! @id
+  body: String!
+  author: User! @relation(name: "ReplaysToUser")
+  achievement: Achievement! @relation(name: "ReplaysToAchievement")
+  comment: Comment! @relation(name: "ReplaysToComment")
+  reacts: [User!]! @relation(name: "ReactsOnReplays")
+  created_at: DateTime! @createdAt
+  updated_at: DateTime! @updatedAt
+}

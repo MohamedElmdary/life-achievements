@@ -14,6 +14,7 @@
   "private": false,
   "devDependencies": {
     "@types/node": "^12.7.9",
+    "@types/validator": "^10.11.3",
     "dotenv": "^8.1.0",
     "graphql-cli": "^3.0.14",
     "nodemon": "^1.19.3",
@@ -31,6 +32,7 @@
     "@config": "src/configs/configs.ts",
     "@resolvers": "src/resolvers/resolvers.ts",
     "@middlewares": "src/middlewares/middlewares.ts",
-    "@graphql": "src/graphql/schema.ts"
+    "@graphql": "src/graphql/schema.ts",
+    "@utils": "src/utils/utils.ts"
   }
 }

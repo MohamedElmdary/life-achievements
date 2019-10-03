@@ -1,3 +1,7 @@
 endpoint: http://localhost:4466
-datamodel: datamodel.gql
+datamodel:
+  - datamodel/user.graphql
+  - datamodel/achievement.graphql
+  - datamodel/comment.graphql
+  - datamodel/replay.graphql
 secret: myAwesomeSecret

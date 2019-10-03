@@ -15,7 +15,8 @@
       "@config": ["src/configs/configs.ts"],
       "@resolvers": ["src/resolvers/resolvers.ts"],
       "@middlewares": ["src/middlewares/middlewares.ts"],
-      "@graphql": ["src/graphql/schema.ts"]
+      "@graphql": ["src/graphql/schema.ts"],
+      "@utils": ["src/utils/utils.ts"]
     }
   },
   "exclude": ["./node_modules", "./dist"]

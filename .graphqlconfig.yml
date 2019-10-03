@@ -2,6 +2,7 @@ projects:
   life-achievements:
     schemaPath: generated/schema.prisma.graphql
     extensions:
+      prisma: prisma/prisma.yml
       codegen:
         - generator: prisma-binding
           language: typescript

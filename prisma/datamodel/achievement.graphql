@@ -1,0 +1,22 @@
+type Achievement {
+  id: ID! @id
+  title: String!
+  description: String!
+  days: [Boolean!]! @scalarList(strategy: RELATION)
+  type: Type! @default(value: DO_IT)
+  completed: Boolean! @default(value: false)
+  author: User! @relation(name: "AchievementsToUser")
+  reacts: [User!]! @relation(name: "ReactsOnAchievements") # like facebook list users
+  published: Boolean! @default(value: false)
+  picture: String!
+  comments: [Comment!]!
+    @relation(name: "CommentsToAchievement", onDelete: CASCADE)
+  replays: [Replay!]! @relation(name: "ReplaysToAchievement", onDelete: CASCADE)
+  created_at: DateTime! @createdAt
+  updated_at: DateTime! @updatedAt
+}
+
+enum Type {
+  DO_IT
+  GET_RID_OF
+}

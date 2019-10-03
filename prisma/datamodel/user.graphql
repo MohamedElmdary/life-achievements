@@ -1,0 +1,32 @@
+type User {
+  id: ID! @id
+  first_name: String!
+  last_name: String!
+  username: String! @unique
+  email: String! @unique
+  phone: String! @unique
+  password: String!
+  forgot_password: String # valid for 2H
+  register_code: String # valid for 8H
+  token: String # valid for 2H
+  refresh_token: String # valid for 1M
+  rate: Int! @default(value: 0)
+  gender: Gender!
+  picture: String @default(value: "http://placeholder.it/200x200")
+  friends: [User!]!
+  # feed: [Achievement!]! # like facebook profile (just the published achievement)
+  achievements: [Achievement!]!
+    @relation(name: "AchievementsToUser", onDelete: CASCADE)
+  comments: [Comment!]! @relation(name: "CommentsToUser", onDelete: CASCADE)
+  replays: [Replay!]! @relation(name: "ReplaysToUser", onDelete: CASCADE)
+  achievement_reacts: [Achievement!]! @relation(name: "ReactsOnAchievements")
+  comment_reacts: [Comment!]! @relation(name: "ReactsOnComments")
+  replay_reacts: [Replay!]! @relation(name: "ReactsOnReplays")
+  created_at: DateTime! @createdAt
+  updated_at: DateTime! @updatedAt
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
