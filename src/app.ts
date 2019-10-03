@@ -5,6 +5,27 @@ import { GraphQLServer } from 'graphql-yoga';
 import { typeDefs } from '@graphql';
 import { middlewares } from '@middlewares';
 import { resolvers } from '@resolvers';
+// import { Query } from '@generated';
+
+//@ts-ignore
+// const q: Query = prisma.query;
+
+// q.user({where: {email: 'asdsa@asdas.com'}}, '{ friends { achivements { id } } }')
+// q.achievements({
+//   skip: 10,
+//   orderBy: 'created_at_DESC',
+//   first: 10,
+//   where: {
+//     author: {
+//       id: 'id',
+//       friends_some: {
+//         achievements_some: {
+//           published: true
+//         }
+//       }
+//     }
+//   }
+// });
 
 const server = new GraphQLServer({
   context({ request }) {

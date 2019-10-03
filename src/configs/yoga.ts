@@ -11,11 +11,13 @@ const options: Options = {
     if (r.errors && !r.data) {
       return {
         data: null,
+        success: false,
         errors: [].concat.apply([], r.errors)
       };
     }
     return {
       ...r,
+      success: true,
       errors: null
     };
   }

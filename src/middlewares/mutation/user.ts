@@ -1,5 +1,5 @@
 import { Middleware } from '../middleware.interface';
-import { UserCreateInput } from '@generated';
+import { UserCreateInput, User } from '@generated';
 import { validate, GqlError, userSelectorMethod } from '@utils';
 import { isEmpty, isLength, isEmail } from 'validator';
 import { compareSync } from 'bcryptjs';
@@ -114,7 +114,13 @@ const loginUser: Middleware<UserCreateInput> = async (
 ) => {
   const { username, password } = data;
   const args = userSelectorMethod(username);
-  const user = await query.user({ where: args }, '{ id password }');
+  const user = await query.user(
+    { where: args },
+    '{ id register_code password }'
+  );
+  if (user && user.register_code) {
+    return GqlError([{ field: 'message', msg: 'Please verify Your account!' }]);
+  }
   const { valid, errors } = validate(
     {
       field: 'username',
