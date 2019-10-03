@@ -48,7 +48,10 @@ const createUser: Middleware<UserCreateInput> = async (
     {
       field: 'phone',
       msg: 'Invalid Phone number.',
-      valid: !isEmpty(phone) && isLength(phone, { max: 11, min: 11 })
+      valid:
+        !isEmpty(phone) &&
+        isLength(phone, { max: 11, min: 11 }) &&
+        /^\d{11}$/.test(phone.trim())
     },
     {
       field: 'phone',
