@@ -1,0 +1,11 @@
+projects:
+  life-achievements:
+    schemaPath: generated/schema.prisma.graphql
+    extensions:
+      codegen:
+        - generator: prisma-binding
+          language: typescript
+          output:
+            binding: generated/autocomplete.prisma.ts
+      endpoints:
+        default: 'http://localhost:4466/'

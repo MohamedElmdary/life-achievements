@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "ts,json,gql,graphql",
+  "ignore": ["test/**/*.spec.ts"],
+  "exec": "DEVELOPMENT=ture ts-node src/app.ts"
+}

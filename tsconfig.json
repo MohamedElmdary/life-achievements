@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": ["dom"],
+    "outDir": "./dist",
+    "removeComments": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "@generated": ["generated/autocomplete.prisma.ts"],
+      "@config": ["src/configs/configs.ts"]
+    }
+  },
+  "exclude": ["./node_modules", "./dist"]
+}
