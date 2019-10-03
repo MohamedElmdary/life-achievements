@@ -12,7 +12,10 @@
     "baseUrl": "./",
     "paths": {
       "@generated": ["generated/autocomplete.prisma.ts"],
-      "@config": ["src/configs/configs.ts"]
+      "@config": ["src/configs/configs.ts"],
+      "@resolvers": ["src/resolvers/resolvers.ts"],
+      "@middlewares": ["src/middlewares/middlewares.ts"],
+      "@graphql": ["src/graphql/schema.ts"]
     }
   },
   "exclude": ["./node_modules", "./dist"]

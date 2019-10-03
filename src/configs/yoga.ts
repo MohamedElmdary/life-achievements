@@ -4,11 +4,20 @@ const options: Options = {
   debug: !!process.env.DEVELOPMENT,
   playground: !!process.env.DEVELOPMENT ? '/playground' : undefined,
   port: process.env.PORT,
-  formatError(e: any) {
-    return e;
+  formatError({ originalError }: any) {
+    return originalError.message;
   },
   formatResponse(r: any) {
-    return r;
+    if (r.errors && !r.data) {
+      return {
+        data: null,
+        errors: [].concat.apply([], r.errors)
+      };
+    }
+    return {
+      ...r,
+      errors: null
+    };
   }
 };
 
