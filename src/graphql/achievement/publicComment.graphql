@@ -1,0 +1,9 @@
+type PublicComment {
+  id: ID!
+  body: String!
+  created_at: String!
+  #   reacts: [User!]! @relation(name: "ReactsOnComments")
+  #   replays: [Replay!]! @relation(name: "ReplaysToComment", onDelete: CASCADE)
+  #   achievement: Achievement! @relation(name: "CommentsToAchievement")
+  #   author: User! @relation(name: "CommentsToUser")
+}

@@ -7,3 +7,8 @@ input CreateAchievementInput {
   type: Type!
   published: Boolean!
 }
+
+input CreateCommentInput {
+  body: String!
+  achievement: String!
+}
