@@ -63,6 +63,18 @@ const makeFriend: Resolver<{ id: string }, User> = async (
   { req, mutation },
   info
 ) => {
+  await mutation.updateUser({
+    where: {
+      id
+    },
+    data: {
+      friends: {
+        connect: {
+          id: (<any>req).userId
+        }
+      }
+    }
+  });
   return (await mutation.updateUser(
     {
       where: {
@@ -86,6 +98,18 @@ const unFriend: Resolver<{ id: string }, User> = async (
   { req, mutation },
   info
 ) => {
+  await mutation.updateUser({
+    where: {
+      id
+    },
+    data: {
+      friends: {
+        disconnect: {
+          id: (<any>req).userId
+        }
+      }
+    }
+  });
   return (await mutation.updateUser(
     {
       where: {

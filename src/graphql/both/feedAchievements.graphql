@@ -1,0 +1,6 @@
+# import PublicAchievement from '../achievement/publicAchievement.graphql';
+# import PublicUser from '../user/publicUser.graphql';
+
+type FeedAchievements implements PublicAchievement {
+  author: PublicUser!
+}

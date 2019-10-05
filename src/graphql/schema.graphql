@@ -2,9 +2,10 @@
 # import * from './achievement/achievement.graphql';
 # import * from './achievement/publicComment.graphql';
 # import * from './achievement/publicReplay.graphql';
+# import * from './both/feedAchievements.graphql';
 
 type Query {
-  hello: String!
+  feed(data: FeedInput!): [FeedAchievements!]!
 }
 
 # replace public auth types with more general ones

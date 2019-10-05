@@ -17,3 +17,8 @@ input CreateReplayInput {
   body: String!
   comment: String!
 }
+
+input FeedInput {
+  skip: Int!
+  limit: Int!
+}
