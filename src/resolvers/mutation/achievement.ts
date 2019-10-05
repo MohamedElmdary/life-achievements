@@ -3,12 +3,29 @@ import { AchievementCreateInput, Achievement } from '@generated';
 
 const createAchievement: Resolver<AchievementCreateInput, Achievement> = async (
   _,
-  args,
-  { mutation },
+  { data: { title, description, type, days, published } },
+  { req, mutation },
   info
 ) => {
-  // not completed!
-  return await mutation.createAchievement(args, info);
+  return await mutation.createAchievement(
+    {
+      data: {
+        title,
+        description,
+        type: type as 'DO_IT' | 'GET_RID_OF',
+        days: {
+          set: Array(+(days as number | string)).fill(false)
+        },
+        published: !!published,
+        author: {
+          connect: {
+            id: (<any>req).userId
+          }
+        }
+      }
+    },
+    info
+  );
 };
 
 export default { createAchievement };

@@ -21,7 +21,9 @@ const createAchievement: Middleware<AchievementCreateInput> = async (
   info
 ) => {
   const userId = await validateAuth(req, exists, mutation);
-  // check token
+  console.log(userId);
+  (<any>req).userId = userId;
+
   const { title, description, type, days } = data;
   const { valid, errors } = validate(
     {

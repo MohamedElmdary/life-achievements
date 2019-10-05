@@ -43,6 +43,9 @@ async function validateAuth(
 
   try {
     const decoded_token = decode(Authorization as string) as { id: string };
+    if (!decoded_token) {
+      throw new Error('User Not Found');
+    }
     const refresh_token = req.header('Refresh_token');
     if (
       await exists.User({

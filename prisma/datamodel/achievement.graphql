@@ -8,7 +8,7 @@ type Achievement {
   author: User! @relation(name: "AchievementsToUser")
   reacts: [User!]! @relation(name: "ReactsOnAchievements") # like facebook list users
   published: Boolean! @default(value: false)
-  picture: String! @default(value: "http://placeholder.it/200x200")
+  picture: String @default(value: "http://placeholder.it/200x200")
   comments: [Comment!]!
     @relation(name: "CommentsToAchievement", onDelete: CASCADE)
   replays: [Replay!]! @relation(name: "ReplaysToAchievement", onDelete: CASCADE)
