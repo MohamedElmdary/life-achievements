@@ -1,8 +1,8 @@
 import { Resolver } from '../resolver.interface';
 import { UserCreateInput, User } from '@generated';
 import { genSaltSync, hashSync } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
 import { v1 } from 'uuid';
+import { generateToken } from '@utils';
 
 const createUser: Resolver<UserCreateInput, User> = async (
   _,
@@ -42,26 +42,7 @@ const loginUser: Resolver<UserCreateInput, User> = async (
   info
 ) => {
   const { id } = (<any>req).user;
-  const token = sign(
-    {
-      date: new Date(),
-      id
-    },
-    process.env.JWT_TOKEN_SECRET as string,
-    {
-      expiresIn: '4h'
-    }
-  );
-  const refresh_token = sign(
-    {
-      date: new Date().getTime() + 5,
-      id
-    },
-    process.env.JWT_REFRESH_TOKEN_SECRET as string,
-    {
-      expiresIn: '10d'
-    }
-  );
+  const [token, refresh_token] = generateToken(id);
   return (await mutation.updateUser(
     {
       where: {

@@ -1,9 +1,11 @@
 import User from './mutation/user';
+import Achievement from './mutation/achievement';
 
 const middlewares = [
   {
     Mutation: {
-      ...User
+      ...User,
+      ...Achievement
     }
   }
 ];

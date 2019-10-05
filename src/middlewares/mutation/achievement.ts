@@ -1,15 +1,26 @@
 import { Middleware } from '../middleware.interface';
 import { AchievementCreateInput } from '@generated';
-import { validate, GqlError } from '@utils';
+import { validate, GqlError, validateAuth } from '@utils';
 import { isEmpty, isLength } from 'validator';
+
+/* 
+
+  title: String!
+  description: String!
+  days: Int!
+  type: Type!
+  published: Boolean!
+
+*/
 
 const createAchievement: Middleware<AchievementCreateInput> = async (
   resolver,
   _,
   { data },
-  ctx,
+  { req, exists, mutation },
   info
 ) => {
+  const userId = await validateAuth(req, exists, mutation);
   // check token
   const { title, description, type, days } = data;
   const { valid, errors } = validate(
