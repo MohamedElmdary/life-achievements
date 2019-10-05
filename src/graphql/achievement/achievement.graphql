@@ -12,3 +12,8 @@ input CreateCommentInput {
   body: String!
   achievement: String!
 }
+
+input CreateReplayInput {
+  body: String!
+  comment: String!
+}

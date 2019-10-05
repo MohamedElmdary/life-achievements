@@ -1,9 +1,5 @@
 import { Resolver } from '../resolver.interface';
-import {
-  AchievementCreateInput,
-  Achievement,
-  CommentCreateInput
-} from '@generated';
+import { AchievementCreateInput, Achievement } from '@generated';
 
 const createAchievement: Resolver<AchievementCreateInput, Achievement> = async (
   _,
@@ -32,30 +28,4 @@ const createAchievement: Resolver<AchievementCreateInput, Achievement> = async (
   );
 };
 
-const createComment: Resolver<CommentCreateInput, Comment> = async (
-  _,
-  { data: { achievement, body } },
-  { req, mutation },
-  info
-) => {
-  return await mutation.createComment(
-    {
-      data: {
-        achievement: {
-          connect: {
-            id: achievement as string
-          }
-        },
-        author: {
-          connect: {
-            id: (<any>req).userId
-          }
-        },
-        body
-      }
-    },
-    info
-  );
-};
-
-export default { createAchievement, createComment };
+export default { createAchievement };

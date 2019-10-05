@@ -1,10 +1,13 @@
 # import * from './user/user.graphql';
 # import * from './achievement/achievement.graphql';
 # import * from './achievement/publicComment.graphql';
+# import * from './achievement/publicReplay.graphql';
 
 type Query {
   hello: String!
 }
+
+# replace public auth types with more general ones
 
 type Mutation {
   createUser(data: CreateUserInput!): PublicUser!
@@ -12,4 +15,5 @@ type Mutation {
   loginUser(data: loginUserInput!): CurrentUserType!
   createAchievement(data: CreateAchievementInput!): PublicAchievement!
   createComment(data: CreateCommentInput!): PublicComment!
+  createReplay(data: CreateReplayInput!): PublicReplay!
 }

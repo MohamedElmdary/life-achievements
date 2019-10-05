@@ -1,0 +1,9 @@
+type PublicReplay {
+  id: ID!
+  body: String!
+  created_at: String!
+  #   author: User! @relation(name: "ReplaysToUser")
+  #   achievement: Achievement! @relation(name: "ReplaysToAchievement")
+  #   comment: Comment! @relation(name: "ReplaysToComment")
+  #   reacts: [User!]! @relation(name: "ReactsOnReplays")
+}
