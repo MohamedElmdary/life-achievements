@@ -16,4 +16,6 @@ type Mutation {
   createAchievement(data: CreateAchievementInput!): PublicAchievement!
   createComment(data: CreateCommentInput!): PublicComment!
   createReplay(data: CreateReplayInput!): PublicReplay!
+  makeFriend(data: FriendInput!): PublicUser!
+  unFriend(data: FriendInput!): PublicUser!
 }

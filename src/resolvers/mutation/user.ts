@@ -57,4 +57,50 @@ const loginUser: Resolver<UserCreateInput, User> = async (
   )) as User;
 };
 
-export default { createUser, verifyRegister, loginUser };
+const makeFriend: Resolver<{ id: string }, User> = async (
+  _,
+  { data: { id } },
+  { req, mutation },
+  info
+) => {
+  return (await mutation.updateUser(
+    {
+      where: {
+        id: (<any>req).userId
+      },
+      data: {
+        friends: {
+          connect: {
+            id
+          }
+        }
+      }
+    },
+    info
+  )) as User;
+};
+
+const unFriend: Resolver<{ id: string }, User> = async (
+  _,
+  { data: { id } },
+  { req, mutation },
+  info
+) => {
+  return (await mutation.updateUser(
+    {
+      where: {
+        id: (<any>req).userId
+      },
+      data: {
+        friends: {
+          disconnect: {
+            id
+          }
+        }
+      }
+    },
+    info
+  )) as User;
+};
+
+export default { createUser, verifyRegister, loginUser, makeFriend, unFriend };

@@ -1,6 +1,6 @@
 import { Middleware } from '../middleware.interface';
 import { UserCreateInput, User } from '@generated';
-import { validate, GqlError, userSelectorMethod } from '@utils';
+import { validate, GqlError, userSelectorMethod, validateAuth } from '@utils';
 import { isEmpty, isLength, isEmail } from 'validator';
 import { compareSync } from 'bcryptjs';
 
@@ -140,4 +140,58 @@ const loginUser: Middleware<UserCreateInput> = async (
   throw GqlError(errors);
 };
 
-export default { loginUser, createUser, verifyRegister };
+const makeFriend: Middleware<{ id: string }> = async (
+  resolver,
+  _,
+  { data: { id } },
+  { req, exists, mutation },
+  info
+) => {
+  const userId = await validateAuth(req, exists, mutation);
+  (<any>req).userId = userId;
+  const { valid, errors } = validate({
+    field: 'friend',
+    msg: 'Friend not found.',
+    valid:
+      id !== userId &&
+      (await exists.User({
+        id: userId,
+        friends_none: {
+          id
+        }
+      }))
+  });
+  if (valid) {
+    return resolver();
+  }
+  throw GqlError(errors);
+};
+
+const unFriend: Middleware<{ id: string }> = async (
+  resolver,
+  _,
+  { data: { id } },
+  { req, exists, mutation },
+  info
+) => {
+  const userId = await validateAuth(req, exists, mutation);
+  (<any>req).userId = userId;
+  const { valid, errors } = validate({
+    field: 'friend',
+    msg: 'Friend not found.',
+    valid:
+      id !== userId &&
+      (await exists.User({
+        id: userId,
+        friends_some: {
+          id
+        }
+      }))
+  });
+  if (valid) {
+    return resolver();
+  }
+  throw GqlError(errors);
+};
+
+export default { loginUser, createUser, verifyRegister, makeFriend, unFriend };
