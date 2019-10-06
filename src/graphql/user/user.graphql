@@ -21,6 +21,6 @@ input verifyRegisterInput {
   register_code: String!
 }
 
-input FriendInput {
+input UniqueInput {
   id: String!
 }

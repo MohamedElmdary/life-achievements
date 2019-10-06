@@ -28,4 +28,26 @@ const createAchievement: Resolver<AchievementCreateInput, Achievement> = async (
   );
 };
 
-export default { createAchievement };
+const achievementPublishment: (
+  x: boolean
+) => Resolver<{ id: string }, Achievement> = published => {
+  return async (_, { data: { id } }, { mutation }, info) => {
+    return (await mutation.updateAchievement(
+      {
+        where: {
+          id
+        },
+        data: {
+          published
+        }
+      },
+      info
+    )) as Achievement;
+  };
+};
+
+export default {
+  createAchievement,
+  publishAchievement: achievementPublishment(true),
+  unPublishAchievement: achievementPublishment(false)
+};

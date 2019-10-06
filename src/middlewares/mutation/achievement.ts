@@ -11,7 +11,6 @@ const createAchievement: Middleware<AchievementCreateInput> = async (
   info
 ) => {
   const userId = await validateAuth(req, exists, mutation);
-  console.log(userId);
   (<any>req).userId = userId;
 
   const { title, description, type, days } = data;
@@ -44,4 +43,30 @@ const createAchievement: Middleware<AchievementCreateInput> = async (
   throw GqlError(errors);
 };
 
-export default { createAchievement };
+const achievementPublishment: Middleware<{ id: string }> = async (
+  resolver,
+  _,
+  { data: { id } },
+  { req, exists, mutation },
+  info
+) => {
+  const userId = await validateAuth(req, exists, mutation);
+  const { valid, errors } = validate({
+    field: 'achievement',
+    msg: 'Achievement was not found.',
+    valid: await exists.Achievement({
+      id,
+      author: { id: userId }
+    })
+  });
+  if (valid) {
+    return resolver();
+  }
+  throw GqlError(errors);
+};
+
+export default {
+  createAchievement,
+  publishAchievement: achievementPublishment,
+  unPublishAchievement: achievementPublishment
+};
