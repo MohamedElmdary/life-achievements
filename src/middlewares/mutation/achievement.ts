@@ -24,12 +24,8 @@ const createAchievement: Middleware<AchievementCreateInput> = async (
     {
       field: 'description',
       msg: 'Description min length is 20 and max length is 400.',
-      valid: !isEmpty(description) && isLength(title, { min: 20, max: 400 })
-    },
-    {
-      field: 'type',
-      msg: 'Type must be (Do It) or (get rid of).',
-      valid: type === 'DO_IT' || type === 'GET_RID_OF'
+      valid:
+        !isEmpty(description) && isLength(description, { min: 20, max: 400 })
     },
     {
       field: 'type',
