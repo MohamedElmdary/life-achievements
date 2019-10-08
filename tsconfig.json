@@ -10,6 +10,9 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "baseUrl": "./",
+    "types": [
+      "node"
+    ],
     "paths": {
       "@generated": ["generated/autocomplete.prisma.ts"],
       "@config": ["src/configs/configs.ts"],
@@ -19,5 +22,7 @@
       "@utils": ["src/utils/utils.ts"]
     }
   },
-  "exclude": ["./node_modules", "./dist"]
+  "exclude": [
+    "node_modules/*"
+  ]
 }

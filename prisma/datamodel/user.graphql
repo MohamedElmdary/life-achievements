@@ -9,7 +9,7 @@ type User {
   forgot_password: String # valid for 2H
   register_code: String # valid for 8H
   token: String # valid for 2H
-  refresh_token: String # valid for 1M
+  # refresh_token: String # valid for 1M
   rate: Int! @default(value: 0)
   gender: Gender!
   picture: String @default(value: "http://placeholder.it/200x200")

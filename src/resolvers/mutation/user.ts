@@ -1,8 +1,8 @@
-import { Resolver } from '../resolver.interface';
-import { UserCreateInput, User } from '@generated';
-import { genSaltSync, hashSync } from 'bcryptjs';
-import { v1 } from 'uuid';
-import { generateToken } from '@utils';
+import { Resolver } from "../resolver.interface";
+import { UserCreateInput, User } from "@generated";
+import { genSaltSync, hashSync } from "bcryptjs";
+import { v1 } from "uuid";
+import { generateToken, isValidToken } from "@utils";
 
 const createUser: Resolver<UserCreateInput, User> = async (
   _,
@@ -38,23 +38,27 @@ const verifyRegister: Resolver<UserCreateInput, User> = async (
 const loginUser: Resolver<UserCreateInput, User> = async (
   _,
   args,
-  { req, mutation },
+  { req, query, mutation },
   info
 ) => {
-  const { id } = (<any>req).user;
-  const [token, refresh_token] = generateToken(id);
-  return (await mutation.updateUser(
-    {
-      where: {
-        id
+  const { id, token } = (<any>req).user;
+  try {
+    isValidToken(token);
+    return (await query.user({ where: { id } }, info)) as User;
+  } catch {
+    const token = generateToken(id);
+    return (await mutation.updateUser(
+      {
+        where: {
+          id
+        },
+        data: {
+          token
+        }
       },
-      data: {
-        token,
-        refresh_token
-      }
-    },
-    info
-  )) as User;
+      info
+    )) as User;
+  }
 };
 
 const makeFriend: Resolver<{ id: string }, User> = async (

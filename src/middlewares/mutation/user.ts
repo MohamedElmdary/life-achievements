@@ -1,8 +1,8 @@
-import { Middleware } from '../middleware.interface';
-import { UserCreateInput, User } from '@generated';
-import { validate, GqlError, userSelectorMethod, validateAuth } from '@utils';
-import { isEmpty, isLength, isEmail } from 'validator';
-import { compareSync } from 'bcryptjs';
+import { Middleware } from "../middleware.interface";
+import { UserCreateInput, User } from "@generated";
+import { validate, GqlError, userSelectorMethod, validateAuth } from "@utils";
+import { isEmpty, isLength, isEmail } from "validator";
+import { compareSync } from "bcryptjs";
 
 const createUser: Middleware<UserCreateInput> = async (
   resolver,
@@ -22,56 +22,56 @@ const createUser: Middleware<UserCreateInput> = async (
   } = data;
   const { valid, errors } = validate(
     {
-      field: 'first_name',
-      msg: 'First name min length 2 and max length 20.',
+      field: "first_name",
+      msg: "First name min length 2 and max length 20.",
       valid: !isEmpty(first_name) && isLength(first_name, { min: 2, max: 20 })
     },
     {
-      field: 'last_name',
-      msg: 'Last name min length 2 and max length 20.',
+      field: "last_name",
+      msg: "Last name min length 2 and max length 20.",
       valid: !isEmpty(last_name) && isLength(last_name, { min: 2, max: 20 })
     },
     {
-      field: 'username',
-      msg: 'username min length 2 and max length 20.',
+      field: "username",
+      msg: "username min length 2 and max length 20.",
       valid: !isEmpty(last_name) && isLength(last_name, { min: 2, max: 20 })
     },
     {
-      field: 'username',
-      msg: 'Username must be unique.',
+      field: "username",
+      msg: "Username must be unique.",
       valid: !(await exists.User({ username }))
     },
     {
-      field: 'gender',
-      msg: 'Gender could be Male or Female only.',
-      valid: gender === 'MALE' || gender === 'FEMALE'
+      field: "gender",
+      msg: "Gender could be Male or Female only.",
+      valid: gender === "MALE" || gender === "FEMALE"
     },
     {
-      field: 'phone',
-      msg: 'Invalid Phone number.',
+      field: "phone",
+      msg: "Invalid Phone number.",
       valid:
         !isEmpty(phone) &&
         isLength(phone, { max: 11, min: 11 }) &&
         /^\d{11}$/.test(phone.trim())
     },
     {
-      field: 'phone',
-      msg: 'Phone must be unique.',
+      field: "phone",
+      msg: "Phone must be unique.",
       valid: !(await exists.User({ phone }))
     },
     {
-      field: 'email',
-      msg: 'Invalid Email.',
+      field: "email",
+      msg: "Invalid Email.",
       valid: isEmail(email)
     },
     {
-      field: 'email',
-      msg: 'Email must be unique.',
+      field: "email",
+      msg: "Email must be unique.",
       valid: !(await exists.User({ email }))
     },
     {
-      field: 'password',
-      msg: 'password min length 6 chars.',
+      field: "password",
+      msg: "password min length 6 chars.",
       valid: !isEmpty(password) && isLength(password, { min: 6 })
     }
   );
@@ -91,8 +91,8 @@ const verifyRegister: Middleware<UserCreateInput> = async (
   const { username, register_code } = data;
   const args: any = userSelectorMethod(username);
   const { valid, errors } = validate({
-    field: 'register_code',
-    msg: 'Invalid Register Code or Username.',
+    field: "register_code",
+    msg: "Invalid Register Code or Username.",
     valid: await exists.User({
       ...args,
       register_code
@@ -116,21 +116,21 @@ const loginUser: Middleware<UserCreateInput> = async (
   const args = userSelectorMethod(username);
   const user = await query.user(
     { where: args },
-    '{ id register_code password }'
+    "{ id register_code token password }"
   );
   if (user && user.register_code) {
-    return GqlError([{ field: 'message', msg: 'Please verify Your account!' }]);
+    return GqlError([{ field: "message", msg: "Please verify Your account!" }]);
   }
   const { valid, errors } = validate(
     {
-      field: 'username',
-      msg: 'Invalid Username.',
+      field: "username",
+      msg: "Invalid Username.",
       valid: !!user
     },
     {
-      field: 'password',
-      msg: 'Invalid Password.',
-      valid: compareSync(password, (user || { password: '' }).password)
+      field: "password",
+      msg: "Invalid Password.",
+      valid: compareSync(password, (user || { password: "" }).password)
     }
   );
   if (valid) {
@@ -150,8 +150,8 @@ const makeFriend: Middleware<{ id: string }> = async (
   const userId = await validateAuth(req, exists, mutation);
   (<any>req).userId = userId;
   const { valid, errors } = validate({
-    field: 'friend',
-    msg: 'Friend not found.',
+    field: "friend",
+    msg: "Friend not found.",
     valid:
       id !== userId &&
       (await exists.User({
@@ -177,8 +177,8 @@ const unFriend: Middleware<{ id: string }> = async (
   const userId = await validateAuth(req, exists, mutation);
   (<any>req).userId = userId;
   const { valid, errors } = validate({
-    field: 'friend',
-    msg: 'Friend not found.',
+    field: "friend",
+    msg: "Friend not found.",
     valid:
       id !== userId &&
       (await exists.User({
