@@ -6,7 +6,7 @@
     "start": "node ./src/app.js",
     "dev": "nodemon",
     "gql": "graphql get-schema & graphql codegen",
-    "build": "tsc"
+    "build": "tsc && node ./build.js && sh ./build.sh"
   },
   "main": "app.js",
   "repository": "https://github.com/MohamedElmdary/life-achievements.git",
