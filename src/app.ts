@@ -7,20 +7,20 @@ import { middlewares } from '@middlewares';
 import { resolvers } from '@resolvers';
 
 const server = new GraphQLServer({
-  context({ request }) {
-    return {
-      req: request,
-      query: prisma.query,
-      mutation: prisma.mutation,
-      subscription: prisma.subscription,
-      exists: prisma.exists
-    };
-  },
-  typeDefs,
-  middlewares,
-  resolvers
+    context({ request }) {
+        return {
+            req: request,
+            query: prisma.query,
+            mutation: prisma.mutation,
+            subscription: prisma.subscription,
+            exists: prisma.exists
+        };
+    },
+    typeDefs,
+    middlewares,
+    resolvers
 });
 
 server.start(options, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+    console.log(`Server running on port ${process.env.PORT}`);
 });
