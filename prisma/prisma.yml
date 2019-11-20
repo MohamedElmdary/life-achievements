@@ -1,7 +1,7 @@
-endpoint: http://localhost:4466
+endpoint: ${env:END_POINT}
 datamodel:
-  - datamodel/user.graphql
-  - datamodel/achievement.graphql
-  - datamodel/comment.graphql
-  - datamodel/replay.graphql
-# secret: myAwesomeSecret
+    - datamodel/user.graphql
+    - datamodel/achievement.graphql
+    - datamodel/comment.graphql
+    - datamodel/replay.graphql
+secret: ${env:PRISMA_SECRET}
