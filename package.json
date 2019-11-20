@@ -1,47 +1,47 @@
 {
-  "name": "life-achievements",
-  "version": "1.0.0",
-  "description": "life-achievements api",
-  "scripts": {
-    "start": "node ./src/app.js",
-    "dev": "nodemon",
-    "gql": "graphql get-schema & graphql codegen",
-    "build": "tsc && node ./build.js && sh ./build.sh"
-  },
-  "main": "app.js",
-  "repository": "https://github.com/MohamedElmdary/life-achievements.git",
-  "author": "MohamedElmdary",
-  "license": "MIT",
-  "private": false,
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/jsonwebtoken": "^8.3.4",
-    "@types/node": "^12.7.9",
-    "@types/uuid": "^3.4.5",
-    "@types/validator": "^10.11.3",
-    "@types/ws": "^6.0.3",
-    "dotenv": "^8.1.0",
-    "graphql-cli": "^3.0.14",
-    "nodemon": "^1.19.3",
-    "ts-node": "^8.4.1",
-    "typescript": "^3.6.3"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "graphql-s2s": "^0.20.2",
-    "graphql-yoga": "^1.18.3",
-    "jsonwebtoken": "^8.5.1",
-    "module-alias": "^2.2.2",
-    "prisma-binding": "^2.3.16",
-    "uuid": "^3.3.3",
-    "validator": "^11.1.0"
-  },
-  "_moduleAliases": {
-    "@generated": "generated/autocomplete.prisma.ts",
-    "@config": "src/configs/configs.ts",
-    "@resolvers": "src/resolvers/resolvers.ts",
-    "@middlewares": "src/middlewares/middlewares.ts",
-    "@graphql": "src/graphql/schema.ts",
-    "@utils": "src/utils/utils.ts"
-  }
+    "name": "life-achievements",
+    "version": "1.0.0",
+    "description": "life-achievements api",
+    "scripts": {
+        "start": "node ./src/app.js",
+        "dev": "nodemon",
+        "gql": "graphql get-schema && graphql codegen",
+        "build": "yarn gql && tsc && node ./build.js"
+    },
+    "main": "app.js",
+    "repository": "https://github.com/MohamedElmdary/life-achievements.git",
+    "author": "MohamedElmdary",
+    "license": "MIT",
+    "private": false,
+    "devDependencies": {
+        "@types/bcryptjs": "^2.4.2",
+        "@types/jsonwebtoken": "^8.3.4",
+        "@types/node": "^12.12.11",
+        "@types/uuid": "^3.4.5",
+        "@types/validator": "^10.11.3",
+        "@types/ws": "^6.0.3",
+        "dotenv": "^8.1.0",
+        "graphql-cli": "^3.0.14",
+        "nodemon": "^1.19.3",
+        "ts-node": "^8.4.1",
+        "typescript": "^3.6.3"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "graphql-s2s": "^0.20.2",
+        "graphql-yoga": "^1.18.3",
+        "jsonwebtoken": "^8.5.1",
+        "module-alias": "^2.2.2",
+        "prisma-binding": "^2.3.16",
+        "uuid": "^3.3.3",
+        "validator": "^11.1.0"
+    },
+    "_moduleAliases": {
+        "@generated": "generated/autocomplete.prisma.ts",
+        "@config": "src/configs/configs.ts",
+        "@resolvers": "src/resolvers/resolvers.ts",
+        "@middlewares": "src/middlewares/middlewares.ts",
+        "@graphql": "src/graphql/schema.ts",
+        "@utils": "src/utils/utils.ts"
+    }
 }
