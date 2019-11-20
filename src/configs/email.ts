@@ -14,13 +14,13 @@ async function sendEmail({
         port: 465,
         secure: true,
         auth: {
-            user: process.env.USER,
+            user: process.env.USER_NAME,
             pass: process.env.PASS
         }
     });
 
     await transporter.sendMail({
-        from: process.env.user,
+        from: process.env.USER_NAME,
         to,
         subject,
         html
