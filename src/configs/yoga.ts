@@ -2,7 +2,7 @@ import { Options } from 'graphql-yoga';
 
 const options: Options = {
     debug: !!process.env.DEVELOPMENT,
-    playground: !!process.env.DEVELOPMENT ? '/' : undefined,
+    playground: '/', // !!process.env.DEVELOPMENT ? '/' : undefined,
     port: process.env.PORT,
     formatError({ originalError }: any) {
         return originalError.message;
