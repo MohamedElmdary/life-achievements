@@ -17,7 +17,21 @@ const searchUsers: Resolver<{ name: string }, User[]> = async (
             first_name_contains: name
           },
           {
+            first_name_contains: name.toLocaleLowerCase()
+          },
+          {
+            first_name_contains:
+              name[0].toLocaleUpperCase() + name.slice(1).toLocaleLowerCase()
+          },
+          {
             last_name_contains: name
+          },
+          {
+            last_name_contains: name.toLocaleLowerCase()
+          },
+          {
+            last_name_contains:
+              name[0].toLocaleUpperCase() + name.slice(1).toLocaleLowerCase()
           }
         ]
       }
