@@ -4,3 +4,7 @@
 type FeedAchievements implements PublicAchievement {
   author: PublicUser!
 }
+
+input SearchUsersInput {
+  name: String!
+}

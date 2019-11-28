@@ -6,10 +6,12 @@ import Replay from './mutation/replay';
 
 // Query
 import AchievementQuery from './query/achievement';
+import UserQuery from './query/user';
 
 const resolvers = {
   Query: {
-    ...AchievementQuery
+    ...AchievementQuery,
+    ...UserQuery
   },
   Mutation: {
     ...User,

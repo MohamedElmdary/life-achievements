@@ -6,6 +6,7 @@
 
 type Query {
   feed(data: FeedInput!): [FeedAchievements!]!
+  searchUsers(data: SearchUsersInput!): [PublicUser!]!
 }
 
 # replace public auth types with more general ones

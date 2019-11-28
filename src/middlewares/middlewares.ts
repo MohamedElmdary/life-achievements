@@ -6,11 +6,13 @@ import Replay from './mutation/replay';
 
 // Query
 import AchievementQuery from './query/achievement';
+import UserQuery from './query/User';
 
 const middlewares = [
   {
     Query: {
-      ...AchievementQuery
+      ...AchievementQuery,
+      ...UserQuery
     },
     Mutation: {
       ...User,
