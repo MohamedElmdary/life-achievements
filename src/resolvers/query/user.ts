@@ -25,4 +25,24 @@ const searchUsers: Resolver<{ name: string }, User[]> = async (
     info
   );
 };
-export default { searchUsers };
+
+const getUser: Resolver<{ id: string }, User | null> = async (
+  _,
+  { data: { id } },
+  { query, req },
+  info
+) => {
+  return (
+    await query.users(
+      {
+        where: {
+          id,
+          register_code: null
+        }
+      },
+      info
+    )
+  )[0];
+};
+
+export default { searchUsers, getUser };

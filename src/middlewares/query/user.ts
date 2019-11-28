@@ -1,17 +1,15 @@
 import { Middleware } from '../middleware.interface';
-import { validateAuth, validate, GqlError } from '@utils';
-import { isNumeric } from 'validator';
+import { validateAuth } from '@utils';
 
 const searchUsers: Middleware = async (
   resolver,
   _,
-  { data: { skip, limit } },
-  { req, exists, mutation },
-  info
+  __,
+  { req, exists, mutation }
 ) => {
   const userId = await validateAuth(req, exists, mutation);
   (<any>req).userId = userId;
   return resolver();
 };
 
-export default { searchUsers };
+export default { searchUsers, getUser: searchUsers };

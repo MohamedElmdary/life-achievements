@@ -8,3 +8,7 @@ type FeedAchievements implements PublicAchievement {
 input SearchUsersInput {
   name: String!
 }
+
+input getUserInput {
+  id: String!
+}
