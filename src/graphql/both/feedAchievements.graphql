@@ -2,13 +2,17 @@
 # import PublicUser from '../user/publicUser.graphql';
 
 type FeedAchievements implements PublicAchievement {
-  author: PublicUser!
+    author: PublicUser!
 }
 
 input SearchUsersInput {
-  name: String!
+    name: String!
 }
 
 input getUserInput {
-  id: String!
+    id: String!
+}
+
+input CompleteDayInput {
+    achievement_id: String!
 }

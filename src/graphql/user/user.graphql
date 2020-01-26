@@ -2,25 +2,25 @@
 # import * from './currentUser.graphql';
 
 input CreateUserInput {
-  first_name: String!
-  last_name: String!
-  username: String!
-  gender: Gender!
-  phone: String!
-  email: String!
-  password: String!
+    first_name: String!
+    last_name: String!
+    username: String!
+    gender: Gender!
+    phone: String!
+    email: String!
+    password: String!
 }
 
 input loginUserInput {
-  username: String!
-  password: String!
+    username: String!
+    password: String!
 }
 
 input verifyRegisterInput {
-  username: String!
-  register_code: String!
+    username: String!
+    register_code: String!
 }
 
 input UniqueInput {
-  id: String!
+    id: String!
 }

@@ -5,22 +5,23 @@
 # import * from './both/feedAchievements.graphql';
 
 type Query {
-  feed(data: FeedInput!): [FeedAchievements!]!
-  searchUsers(data: SearchUsersInput!): [PublicUser!]!
-  getUser(data: getUserInput!): PublicUser
+    feed(data: FeedInput!): [FeedAchievements!]!
+    searchUsers(data: SearchUsersInput!): [PublicUser!]!
+    getUser(data: getUserInput!): PublicUser
 }
 
 # replace public auth types with more general ones
 
 type Mutation {
-  createUser(data: CreateUserInput!): PublicUser!
-  verifyRegister(data: verifyRegisterInput!): PublicUser!
-  loginUser(data: loginUserInput!): CurrentUserType!
-  createAchievement(data: CreateAchievementInput!): PublicAchievement!
-  createComment(data: CreateCommentInput!): PublicComment!
-  createReplay(data: CreateReplayInput!): PublicReplay!
-  makeFriend(data: UniqueInput!): PublicUser!
-  unFriend(data: UniqueInput!): PublicUser!
-  publishAchievement(data: UniqueInput!): PublicAchievement!
-  unPublishAchievement(data: UniqueInput!): PublicAchievement!
+    createUser(data: CreateUserInput!): PublicUser!
+    verifyRegister(data: verifyRegisterInput!): PublicUser!
+    loginUser(data: loginUserInput!): CurrentUserType!
+    createAchievement(data: CreateAchievementInput!): PublicAchievement!
+    createComment(data: CreateCommentInput!): PublicComment!
+    createReplay(data: CreateReplayInput!): PublicReplay!
+    makeFriend(data: UniqueInput!): PublicUser!
+    unFriend(data: UniqueInput!): PublicUser!
+    publishAchievement(data: UniqueInput!): PublicAchievement!
+    unPublishAchievement(data: UniqueInput!): PublicAchievement!
+    completeDay(data: CompleteDayInput!): PublicAchievement!
 }
