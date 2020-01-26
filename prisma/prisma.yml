@@ -1,7 +1,7 @@
 endpoint: ${env:END_POINT}
 datamodel:
-  - datamodel/user.graphql
-  - datamodel/achievement.graphql
-  - datamodel/comment.graphql
-  - datamodel/replay.graphql
-# secret: ${env:PRISMA_SECRET}
+    - datamodel/user.graphql
+    - datamodel/achievement.graphql
+    - datamodel/comment.graphql
+    - datamodel/replay.graphql
+secret: ${env:PRISMA_SECRET}
