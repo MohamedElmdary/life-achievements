@@ -8,6 +8,7 @@ type Query {
     feed(data: FeedInput!): [FeedAchievements!]!
     searchUsers(data: SearchUsersInput!): [PublicUser!]!
     getUser(data: getUserInput!): PublicUser
+    userAchievements(data: userAchievementsInput): [PublicAchievement!]!
 }
 
 # replace public auth types with more general ones

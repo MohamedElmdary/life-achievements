@@ -16,3 +16,7 @@ input getUserInput {
 input CompleteDayInput {
     achievement_id: String!
 }
+
+input userAchievementsInput {
+    active: Boolean!
+}
