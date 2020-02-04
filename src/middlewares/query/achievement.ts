@@ -41,4 +41,28 @@ const userAchievements: Middleware<{}> = async (
     return resolver();
 };
 
-export default { feed, userAchievements };
+const getAchievementById: Middleware<{ id: string }> = async (
+    resolver,
+    _,
+    { data: { id } },
+    { req, exists, mutation },
+    info
+) => {
+    const userId = await validateAuth(req, exists, mutation);
+    const { valid, errors } = validate({
+        field: 'id',
+        msg: 'Achievement was not found.',
+        valid: await exists.Achievement({
+            id,
+            author: {
+                id: userId
+            }
+        })
+    });
+    if (valid) {
+        return resolver();
+    }
+    throw GqlError(errors);
+};
+
+export default { feed, userAchievements, getAchievementById };

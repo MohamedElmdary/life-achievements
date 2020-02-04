@@ -41,9 +41,28 @@ const userAchievements: Resolver<{ active?: boolean }, Achievement[]> = async (
     if (data?.active === true || data?.active === false) {
         where.completed = !data.active;
     }
-    return await query.achievements({
-        where
-    });
+    return await query.achievements(
+        {
+            where
+        },
+        info
+    );
 };
 
-export default { feed, userAchievements };
+const getAchievementById: Resolver<{ id: string }, Achievement> = async (
+    _,
+    { data: { id } },
+    { req, query },
+    info
+) => {
+    return (await query.achievement(
+        {
+            where: {
+                id
+            }
+        },
+        info
+    )) as Achievement;
+};
+
+export default { feed, userAchievements, getAchievementById };

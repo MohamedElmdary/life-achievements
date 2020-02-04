@@ -9,6 +9,7 @@ type Query {
     searchUsers(data: SearchUsersInput!): [PublicUser!]!
     getUser(data: getUserInput!): PublicUser
     userAchievements(data: userAchievementsInput): [PublicAchievement!]!
+    getAchievementById(data: getAchievementByIdInput!): PublicAchievement!
 }
 
 # replace public auth types with more general ones
