@@ -56,7 +56,7 @@ const completeDay: Resolver<{ achievement_id: string }, Achievement> = async (
     const days: boolean[] = (<any>req).achv.days;
     const timeDiff = new Date().getTime() - new Date(createdAt).getTime();
     const idx = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    if (idx > 0 && days.length < idx) {
+    if (idx > 0 && days.length >= idx) {
         days[idx - 1] = true;
     }
     return (await mutation.updateAchievement(
@@ -67,7 +67,8 @@ const completeDay: Resolver<{ achievement_id: string }, Achievement> = async (
             data: {
                 days: {
                     set: days
-                }
+                },
+                completed: days.length <= idx
             }
         },
         info
