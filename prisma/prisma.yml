@@ -4,4 +4,4 @@ datamodel:
     - datamodel/achievement.graphql
     - datamodel/comment.graphql
     - datamodel/replay.graphql
-secret: ${env:PRISMA_SECRET}
+# secret: ${env:PRISMA_SECRET}

@@ -3,11 +3,12 @@
 # import * from './achievement/publicComment.graphql';
 # import * from './achievement/publicReplay.graphql';
 # import * from './both/feedAchievements.graphql';
+# import * from './both/fullPublicUser.graphql';
 
 type Query {
     feed(data: FeedInput!): [FeedAchievements!]!
     searchUsers(data: SearchUsersInput!): [PublicUser!]!
-    getUser(data: getUserInput!): PublicUser
+    getUser(data: getUserInput!): FullPublicUser
     userAchievements(data: userAchievementsInput): [PublicAchievement!]!
     getAchievementById(data: getAchievementByIdInput!): PublicAchievement!
 }

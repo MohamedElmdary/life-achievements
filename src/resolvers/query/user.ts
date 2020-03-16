@@ -47,7 +47,7 @@ const getUser: Resolver<{ id: string }, User | null> = async (
     { query, req },
     info
 ) => {
-    return (
+    const user = (
         await query.users(
             {
                 where: {
@@ -58,6 +58,12 @@ const getUser: Resolver<{ id: string }, User | null> = async (
             info
         )
     )[0];
+
+    if (user?.achievements) {
+        user.achievements = user.achievements.filter(v => v.published);
+    }
+
+    return user;
 };
 
 export default { searchUsers, getUser };

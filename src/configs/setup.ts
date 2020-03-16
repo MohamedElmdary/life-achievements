@@ -1,3 +1,3 @@
 if (!!process.env.DEVELOPMENT) {
-  require('dotenv').config();
+    require('dotenv').config();
 }

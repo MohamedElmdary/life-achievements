@@ -1,0 +1,6 @@
+# import * from '../user/publicUser.graphql';
+#import * from '../achievement/publicAchievement.graphql';
+
+type FullPublicUser implements PublicUser {
+    achievements: [PublicAchievement!]!
+}
