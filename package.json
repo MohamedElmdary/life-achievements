@@ -36,7 +36,7 @@
         "nodemailer": "^6.3.1",
         "prisma-binding": "^2.3.16",
         "uuid": "^3.3.3",
-        "validator": "^11.1.0"
+        "validator": "^13.7.0"
     },
     "_moduleAliases": {
         "@generated": "generated/autocomplete.prisma.ts",
