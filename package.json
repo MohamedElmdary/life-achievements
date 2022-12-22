@@ -31,7 +31,7 @@
         "bcryptjs": "^2.4.3",
         "graphql-s2s": "^0.20.2",
         "graphql-yoga": "^1.18.3",
-        "jsonwebtoken": "^8.5.1",
+        "jsonwebtoken": "^9.0.0",
         "module-alias": "^2.2.2",
         "nodemailer": "^6.3.1",
         "prisma-binding": "^2.3.16",
